@@ -1,0 +1,137 @@
+graph - Graph data structure
+
+This module contains a Graph class for creating and working with graphs. The graph is stored using an adjacency map. 
+The graph can be directed or undirected and supports adding vertices and edges, labeling, basic graph queries, removing vertices and edges, and coloring vertices and edges.
+
+The main class in this module is Graph. The Graph class uses two nested classes, Vertex and Edge, to represent the vertices and edges in the graph.
+
+
+Creating a graph
+
+
+class Graph(directed=False)
+    Create an empty graph
+    If directed is False, then the graph is undirected.
+    If directed is True, the graph is directed.
+
+
+Adding Vertices and edges
+
+
+Graph.add_vertex(label=None)
+    Create a new vertex and add it to the graph.
+    The vertex is stored in the adjacency map and returned.
+    
+Graph.add_edge(origin, destination, label=None)
+    Create a new edge from origin to destination and add it to the graph.
+    The edge is stored in the adjacency map and returned.
+    Raises TypeError if origin or destination is not a Graph.Vertex.
+    
+    
+Label methods
+
+
+Graph.set_vertex_label(vertex, label)
+    Set the label value stored on a vertex.
+    Raises TypeError if vertex is not a Graph.Vertex.
+
+Graph.get_vertex_label(vertex)
+    Return the label value stored on a vertex.
+    Raises TypeError if vertex is not a Graph.Vertex.
+
+Graph.set_edge_label(edge, label)
+    Set the label value stored on an edge.
+    Raises TypeError if edge is not a Graph.Edge.
+
+Graph.get_edge_label(edge)
+    Return the label value stored on an edge.
+    Raises TypeError if edge is not a Graph.Edge.
+
+Graph.set_label(thing, label)
+    Set the label of either a vertex or an edge.
+    Raises TypeError if thing is not a Graph.Vertex or Graph.Edge.
+
+Graph.get_label(thing)
+    Return the label of either a vertex or an edge.
+    Raises TypeError if thing is not a Graph.Vertex or Graph.Edge.
+    
+
+Graph query methods
+
+
+Graph.vertices()
+    Return a set of all vertices.
+
+Graph.edges()
+    Return a set of all edges.
+
+Graph.vertex_count()
+    Return the number of vertices.
+
+Graph.edge_count()
+    Return the number of edges.
+
+Graph.adjacent(origin, destination, outgoing=True)
+    Return the edge between origin and destination, or None.
+
+Graph.neighbors(vertex, outgoing=True)
+    Return the neighboring vertices of a vertex.
+
+Graph.degree(vertex, outgoing=True)
+    Return the degree of a vertex.
+
+Graph.incident_edges(vertex, outgoing=True)
+    Return the edges connected to a vertex.
+    
+    
+Removal methods
+
+
+Graph.remove_edge(edge)
+Graph.remove_edge(origin, destination)
+    Remove an edge from the graph.
+    If the edge does not exist then no changes are made.
+
+Graph.remove_vertex(vertex)
+    Remove a vertex and all connected edges.
+
+Graph.remove(obj)
+    Remove either a vertex or an edge.
+
+
+Coloring methods
+
+
+Graph.greedy_vertex_coloring()
+    Assign colors to vertices so that adjacent vertices do not share the same color.
+    Colors are stored as non-negative integers.
+    
+Graph.greedy_edge_coloring()
+    Assign colors to edges so that edges sharing a vertex do not share the same color.
+    Colors are stored as non-negative integers.
+    
+
+Examples
+
+graph example:
+    
+    G = graph.Graph()
+    a = G.add_vertex("A")
+    b = G.add_vertex("B")
+    G.add_edge(a, b)
+    
+    print(G.vertex_count())
+    
+coloring example:
+    
+    G = graph.Graph()
+    v1 = G.add_vertex("1")
+    v2 = G.add_vertex("2")
+    v3 = G.add_vertex("3")
+    
+    G.add_edge(v1, v2)
+    G.add_edge(v2, v3)
+    G.add_edge(v1, v3)
+    
+    G.greedy_vertex_coloring()
+    print(v1.get_color(), v2.get_color(), v3.get_color())
